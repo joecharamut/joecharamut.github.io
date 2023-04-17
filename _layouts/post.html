@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-info">
+        {%- assign icon_name = page.icon | default: "executable-1" -%}
+        {%- assign icon = site.static_files | where: "window-icon", true | where_exp: "icon", "icon.basename == icon_name" | first -%}
+        <img class="title-bar-icon" src="{{ icon.path }}" alt="icon">
+        <div class="title-bar-text">{{ page.title | default: "Post" | escape }}</div>
+      </div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      {{ content }}
+    </div>
+    <div class="status-bar align-right">
+      <p class="status-bar-field">
+        {%- assign post_author = page.author | default: "null" -%}
+        Posted by <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ post_author }}</span></span>
+      </p>
+      <p class="status-bar-field">
+        <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          {{ page.date | date: date_format }}
+        </time>
+      </p>
+      <p class="status-bar-field"></p>
+    </div>
+  </div>
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>
