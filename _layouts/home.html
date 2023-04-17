@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<div class="window home">
+  <div class="title-bar">
+    <div class="title-bar-info">
+      {%- assign icon_name = page.icon | default: "executable-1" -%}
+      {%- assign icon = site.static_files | where: "window-icon", true | where_exp: "icon", "icon.basename == icon_name" | first -%}
+      <img class="title-bar-icon" src="{{ icon.path }}" alt="icon">
+      <div class="title-bar-text">{{ page.title | default: "Home" | escape }}</div>
+    </div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    {{ content }}
+  </div>
+  <div class="status-bar"></div>
+</div>
