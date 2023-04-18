@@ -5,13 +5,14 @@
 
 
 $background_color: #008082;
+$body_font: "IBM Plex Sans", sans-serif;
 
 body {
   background-color: $background_color;
 }
 
 .title-bar, .window, button, input, label, option, select, table, textarea, ul.tree-view {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: $body_font;
   font-size: 12px;
 }
 
@@ -26,6 +27,10 @@ body {
   margin-left: 4px;
 }
 
+.window {
+  margin-bottom: 8px;
+}
+
 ul.tree-view a {
   color: revert;
   text-decoration: revert;
@@ -35,7 +40,7 @@ ul.tree-view summary {
   cursor: pointer;
 }
 
-div.title-bar-text {
+.title-bar-text {
   user-select: none;
 }
 
@@ -44,7 +49,7 @@ div.title-bar-text {
   height: 16px;
 }
 
-div.title-bar-info {
+.title-bar-info {
   display: flex;
 }
 

@@ -26,11 +26,11 @@ layout: default
       <p class="status-bar-field">
         <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
           {%- assign date_format = site.date_format -%}
-          {{ page.date | date: date_format }}
+          {{ page.date | default: 0 | date: date_format }}
         </time>
       </p>
       <p class="status-bar-field">Tags:
-        {% if page.tags != empty %}
+        {% if page.tags and page.tags != empty %}
           {% for tag in page.tags %}
             <a href="/tags/{{ tag | slugify: "pretty" }}/">{{ tag }}</a>
           {% endfor %}
