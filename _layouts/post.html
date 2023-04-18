@@ -6,9 +6,8 @@ layout: default
   <div class="window">
     <div class="title-bar">
       <div class="title-bar-info">
-        {%- assign icon_name = page.icon | default: "executable-1" -%}
-        {%- assign icon = site.static_files | where: "window-icon", true | where_exp: "icon", "icon.basename == icon_name" | first -%}
-        <img class="title-bar-icon" src="{{ icon.path }}" alt="icon">
+        {%- assign icon_name = page.icon | default: "executable_1" -%}
+        <div class="title-bar-icon win98-icon {{ icon_name }}"></div>
         <div class="title-bar-text">{{ page.title | default: "Post" | escape }}</div>
       </div>
       <div class="title-bar-controls">
@@ -26,11 +25,19 @@ layout: default
       </p>
       <p class="status-bar-field">
         <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-          {{ page.date | date: date_format }}
+          {%- assign date_format = site.date_format -%}
+          {{ page.date | default: 0 | date: date_format }}
         </time>
       </p>
-      <p class="status-bar-field"></p>
+      <p class="status-bar-field">Tags:
+        {% if page.tags and page.tags != empty %}
+          {% for tag in page.tags %}
+            <a href="#nav-tag-{{ tag | slugify: "pretty" }}">{{ tag }}</a>
+          {% endfor %}
+        {% else %}
+          <em>none</em>
+        {% endif %}
+      </p>
     </div>
   </div>
 

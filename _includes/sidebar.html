@@ -1,49 +1,107 @@
-<div class="window" id="sidebar">
-  <div class="title-bar">
-    <div class="title-bar-info">
-      <img class="title-bar-icon" src="/icon.png" alt="icon">
-      <div class="title-bar-text">{{ site.title | escape }}</div>
+<div id="sidebar">
+  <div class="window" id="nav-window">
+    <div class="title-bar">
+      <div class="title-bar-info">
+        <img class="title-bar-icon" src="/assets/icon.png" alt="icon">
+        <div class="title-bar-text">{{ site.title | escape }}</div>
+      </div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+      </div>
     </div>
-    <div class="title-bar-controls">
-      <button aria-label="Minimize"></button>
-      <button aria-label="Maximize"></button>
-    </div>
-  </div>
-  <div class="window-body">
-    <div id="nav">
-      <ul class="tree-view">
-        <li>Hello World!</li>
-        <li>
-          <details>
-            <summary>Categories</summary>
-            <ul>
-              {%- for cat in site.categories -%}
-                {%- assign cat_name = cat[0] -%}
-                <details>
-                  <summary>{{ cat_name }}</summary>
-                  <ul>
-                    {%- for post in site.categories[cat_name] -%}
-                      <li><a class="post-link" href="{{ post.url | relative_url }}">{{ post.date | date: site.date_format }} &mdash; {{ post.title | escape }}</a></li>
-                    {%- endfor -%}
-                  </ul>
-                </details>
-              {%- endfor -%}
-            </ul>
-          </details>
-        </li>
+    <div class="window-body">
+      <div id="nav">
+        <ul class="tree-view">
+          <li>
+            <a href="/" class="post-link {% if page.url == "/" %}post-link-highlight{% endif %}">Home</a>
+          </li>
 
-        <li>
-          <details {% if page.id %}open{% endif %}>
-            <summary>Posts</summary>
-            <ul>
-            {%- for post in site.posts -%}
-            <li><a class="post-link {% if page.id == post.id %}post-link-highlight{% endif %}" href="{{ post.url | relative_url }}">{{ post.date | date: site.date_format }} &mdash; {{ post.title | escape }}</a></li>
-            {%- endfor -%}
-            </ul>
-          </details>
-        </li>
-      </ul>
+          <li>
+            <details>
+              <summary>Categories</summary>
+              <ul>
+                {%- for cat in site.categories -%}
+                  {%- assign cat_name = cat[0] -%}
+                  <details>
+                    <summary>{{ cat_name }}</summary>
+                    <ul>
+                      {%- for post in site.categories[cat_name] -%}
+                        <li><a class="post-link" href="{{ post.url | relative_url }}">{{ post.date | date: site.date_format }} &mdash; {{ post.title | escape }}</a></li>
+                      {%- endfor -%}
+                    </ul>
+                  </details>
+                {%- endfor -%}
+              </ul>
+            </details>
+          </li>
+
+          <li>
+            <details id="nav-tag-list">
+              <summary>Tags</summary>
+              <ul>
+                {%- for tag in site.tags -%}
+                  {%- assign tag_name = tag[0] -%}
+                  <details class="nav-tag-item" id="nav-tag-{{ tag_name | slugify: "pretty" }}">
+                    <summary>{{ tag_name }}</summary>
+                    <ul>
+                      {%- for post in site.tags[tag_name] -%}
+                        <li><a class="post-link" href="{{ post.url | relative_url }}">{{ post.date | date: site.date_format }} &mdash; {{ post.title | escape }}</a></li>
+                      {%- endfor -%}
+                    </ul>
+                  </details>
+                {%- endfor -%}
+              </ul>
+            </details>
+            <script>
+              function updateOpenTag() {
+                document.querySelectorAll(".nav-tag-item").forEach(el => {
+                  el.removeAttribute("open");
+                });
+                document.querySelectorAll(location.hash).forEach(el => {
+                  document.querySelector("#nav-tag-list").setAttribute("open", "true");
+                  el.setAttribute("open", "true");
+                });
+              }
+              addEventListener("load", updateOpenTag);
+              addEventListener("hashchange", updateOpenTag);
+            </script>
+          </li>
+
+          <li>
+            <details {% if page.id %}open{% endif %}>
+              <summary>Posts</summary>
+              <ul>
+              {%- for post in site.posts -%}
+                <li><a class="post-link {% if page.id == post.id %}post-link-highlight{% endif %}" href="{{ post.url | relative_url }}">{{ post.date | date: site.date_format }} &mdash; {{ post.title | escape }}</a></li>
+              {%- endfor -%}
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="status-bar"></div>
+  </div>
+
+  {% comment %}
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-info">
+        <div class="title-bar-icon win98-icon executable_1"></div>
+        <div class="title-bar-text">Window</div>
+      </div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="status-bar align-right">
+      <div class="status-bar-field"></div>
     </div>
   </div>
-  <div class="status-bar"></div>
+  {% endcomment %}
 </div>

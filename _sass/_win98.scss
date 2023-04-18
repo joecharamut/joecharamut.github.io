@@ -1,0 +1,74 @@
+@import url("https://unpkg.com/98.css@0.1.20");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap");
+@import "win98_icons";
+@import "monokai";
+
+
+$background_color: #008082;
+$body_font: "IBM Plex Sans", sans-serif;
+
+body {
+  background-color: $background_color;
+}
+
+.title-bar, .window, button, input, label, option, select, table, textarea, ul.tree-view {
+  font-family: $body_font;
+  font-size: 12px;
+}
+
+#sidebar {
+  float: left;
+  max-width: 33%;
+}
+
+#page-content {
+  float: left;
+  max-width: 66%;
+  margin-left: 4px;
+}
+
+.window {
+  margin-bottom: 8px;
+}
+
+ul.tree-view a {
+  color: revert;
+  text-decoration: revert;
+}
+
+ul.tree-view summary {
+  cursor: pointer;
+}
+
+.title-bar-text {
+  user-select: none;
+}
+
+.title-bar-icon {
+  margin-right: 4px;
+  height: 16px;
+}
+
+.title-bar-info {
+  display: flex;
+}
+
+.status-bar.align-right .status-bar-field {
+  flex-grow: 0;
+}
+
+.status-bar.align-right .status-bar-field:last-child {
+  flex-grow: 1;
+}
+
+.status-bar.align-left .status-bar-field {
+  flex-grow: 0;
+}
+
+.status-bar.align-left .status-bar-field:first-child {
+  flex-grow: 1;
+}
+
+.post-link-highlight {
+  outline: 2px dotted #000000;
+}
