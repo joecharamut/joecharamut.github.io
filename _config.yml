@@ -29,11 +29,23 @@ url: "https://www.spaghetti.rocks" # the base hostname & protocol for your site,
 github_username:  joecharamut
 
 # Build settings
-#theme: minima
 plugins:
   - jekyll-feed
 date_format: "%b %-d, %Y"
+
+# enable code highlighting
 highlighter: rouge
+
+# markdown processor options
+kramdown:
+  # disable smart quotes
+  smart_quotes:               apos,apos,quot,quot
+  # disable ellipsis
+  typographic_symbols:        {hellip: ...}
+
+# feed options
+feed:
+  tags: false
 
 # Exclude from processing.
 # The following items will not be processed, by default.
