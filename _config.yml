@@ -33,6 +33,7 @@ github_username:  joecharamut
 plugins:
   - jekyll-feed
 date_format: "%b %-d, %Y"
+highlighter: rouge
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -42,20 +43,18 @@ date_format: "%b %-d, %Y"
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
-
-defaults:
-  - scope:
-      path: "assets/window-icons"
-    values:
-      window-icon: true
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .idea/
+  - .git/
+  - .github/
+  - .gitignore
